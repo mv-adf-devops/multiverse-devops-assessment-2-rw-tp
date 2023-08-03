@@ -30,3 +30,14 @@ def test_header_is_correct():
 
     #Assert
     assert output[0] == expected_output
+
+def test_incorrect_filename():
+    #Arrange
+    filename = 'wrong_filename.csv'
+    expected_output = list
+
+    #Act
+    output = read_csv(filename)
+
+    #Assert
+    assert type(output) == expected_output    
