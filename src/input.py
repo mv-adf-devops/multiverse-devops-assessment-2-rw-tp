@@ -5,6 +5,5 @@ def main():
     data = read_csv(filename)
     print(data)
 
-
 if __name__ == "__main__":
     main()
