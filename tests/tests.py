@@ -1,4 +1,13 @@
 from extract import read_csv, remove_duplicates, print_results
+import csv
+
+def csv_read_test(filename):
+    data = []
+    with open(filename, 'r') as file_hook:
+        file_reader = csv.reader(file_hook)
+        for row in file_reader:
+            data.append(row)
+    return data
 
 '''
 Ticket #1 Read a CSV file
@@ -11,36 +20,36 @@ Objectives:
 '''
 
 def test_file_read_to_list():
-    #Arrange
+    # Arrange
     filename = 'results.csv'
     expected_output = list
 
-    #Act
+    # Act
     output = read_csv(filename)
 
-    #Assert
+    # Assert
     assert type(output) == expected_output
 
 def test_header_is_correct():
-    #Arrange
+    # Arrange
     filename = 'results.csv'    
     expected_output = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
 
-    #Act
+    # Act
     output = read_csv(filename)
 
-    #Assert
+    # Assert
     assert output[0] == expected_output
 
 def test_incorrect_filename():
-    #Arrange
+    # Arrange
     filename = 'wrong_filename.csv'
     expected_output = list
 
-    #Act
+    # Act
     output = read_csv(filename)
 
-    #Assert
+    # Assert
     assert type(output) == expected_output    
 
 
@@ -55,17 +64,16 @@ Objectives:
 '''    
 
 def test_duplicates_removed():
-    #Arrange
+    # Arrange
     input_file = "tests/data//test_2_input.csv"
-    output_file = "tests/data/test_2_exp_output.csv"
+    exp_output_file = "tests/data/test_2_exp_output.csv"
+
+    # Act
     input_data = read_csv(input_file)
-    exp_output_data  = read_csv(output_file)
+    exp_output_data = csv_read_test(exp_output_file)        
 
-    #Act
-    data = remove_duplicates(input_data)
-
-    #Assert
-    assert data == exp_output_data
+    # Assert
+    assert input_data == exp_output_data
 
 '''
 Ticket #3 Ignore empty lines
@@ -78,11 +86,11 @@ Objectives:
 def test_ignore_empty_lines():
     # Arrange
     input_file = "tests/data/test_3_input.csv"
-    output_file = "tests/data/test_3_exp_output.csv"   
+    exp_output_file = "tests/data/test_3_exp_output.csv"   
     
     # Act
     input_data = read_csv(input_file)
-    exp_output_data = read_csv(output_file)
+    exp_output_data = csv_read_test(exp_output_file)
     
     # Assert
     assert input_data == exp_output_data
@@ -99,11 +107,11 @@ Objectives:
 def test_capitalize_names():
     # Arrange
     input_file = "tests/data/test_4_input.csv"
-    output_file = "tests/data/test_4_exp_output.csv"   
+    exp_output_file = "tests/data/test_4_exp_output.csv"   
     
     # Act
     input_data = read_csv(input_file)
-    exp_output_data = read_csv(output_file)
+    exp_output_data = csv_read_test(exp_output_file)
     
     # Assert
     assert input_data == exp_output_data
@@ -119,13 +127,13 @@ Objectives:
 '''
 
 def test_validate_answer_3():
-    # Arrange
+    # Arrange    
     input_file = "tests/data/test_5_input.csv"
-    output_file = "tests/data/test_5_exp_output.csv"   
+    exp_output_file = "tests/data/test_5_exp_output.csv"   
     
     # Act
     input_data = read_csv(input_file)
-    exp_output_data = read_csv(output_file)
+    exp_output_data = csv_read_test(exp_output_file)
 
     # Assert
     assert input_data == exp_output_data
@@ -145,18 +153,18 @@ Objectives:
 def test_clean_data_to_file():
     # Arrange
     input_file = "tests/data/test_6_input.csv"
-    output_file = "tests/data/test_6_exp_output.csv"
-    test_output_filename = 'test_clean_results.csv'
+    exp_output_file = "tests/data/test_6_exp_output.csv"
+    test_exp_output_filename = 'test_clean_results.csv'
     
     # Act
-    read_csv(input_file, test_output_filename)
+    read_csv(input_file, test_exp_output_filename)
     
     # Assert
     try:
-        with open(test_output_filename, 'r') as f:
+        with open(test_exp_output_filename, 'r') as f:
             lines = f.readlines()
             output = [line.strip().split(',') for line in lines]
-        with open(output_file, 'r') as f:
+        with open(exp_output_file, 'r') as f:
             lines = f.readlines()
             expected_output = [line.strip().split(',') for line in lines]                    
         assert output == expected_output

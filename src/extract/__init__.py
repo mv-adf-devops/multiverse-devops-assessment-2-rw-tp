@@ -30,7 +30,7 @@ def read_csv(filename, output_filename='clean_results.csv'):
                 f.write(','.join(row) + '\n')
     # except FileNotFoundError as e:
     except OSError as e:
-        print(e)              
+        print(e)                     
     return rows 
 
 def remove_duplicates(data):    
