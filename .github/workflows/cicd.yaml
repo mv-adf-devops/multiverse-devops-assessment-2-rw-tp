@@ -29,7 +29,7 @@ jobs:
       run: python -m pytest
       working-directory: .
 
-terraform:
+  terraform:
     name: Run Terraform
     runs-on: ubuntu-latest
     defaults:
