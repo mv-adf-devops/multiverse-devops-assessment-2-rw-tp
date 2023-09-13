@@ -23,4 +23,5 @@ jobs:
       run: pip install pytest pytest-cov
     - name: Run Pytest
       run: pytest
-      working-directory: python-survey-app
+      # working-directory: python-survey-app
+      working-directory: .
