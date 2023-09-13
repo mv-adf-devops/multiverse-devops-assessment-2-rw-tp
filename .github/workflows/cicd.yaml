@@ -8,7 +8,7 @@ on:
 
 jobs:
   pytest:
-    name: Test the Survey Application
+    name: Test the Application
     runs-on: ubuntu-latest
     steps:
     - name: Checkout the repository
