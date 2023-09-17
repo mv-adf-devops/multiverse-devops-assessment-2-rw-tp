@@ -40,7 +40,7 @@ def remove_duplicates(data):
             unique_data.append(row)
     return unique_data
 
-def print_results(filename='clean_results.csv', fixed_length=False):
+def print_results(filename='results.csv', fixed_length=False):
     rows = read_csv(filename)
     if fixed_length:
         # Find maximum length for each column for formatting

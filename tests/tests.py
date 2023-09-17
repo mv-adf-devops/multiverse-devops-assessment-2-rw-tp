@@ -185,8 +185,6 @@ Objectives:
 def test_print_clean_results(capsys):
     # Arrange
     input_file = "tests/data/test_7_input.csv"
-    save_filename = 'sample_clean_results.csv'
-    read_csv(input_file, save_filename)
 
     expected_output_default = """user_id, first_name, last_name, answer_1, answer_2, answer_3
 1, Charissa, Clark, yes, c, 7
@@ -199,12 +197,12 @@ def test_print_clean_results(capsys):
 3       Patience   Reeves    yes      b        9        
 """
     # Act and Assert for default mode
-    print_results(save_filename)
+    print_results(input_file)
     captured = capsys.readouterr()
     assert captured.out == expected_output_default
     
-    # Act and Assert for fixed-length mode
-    print_results(save_filename, fixed_length=True)
+    # Act and Assert for fixed-length mode    
+    print_results(input_file, fixed_length=True)
     captured = capsys.readouterr()
     assert captured.out == expected_output_fixed_length
 
